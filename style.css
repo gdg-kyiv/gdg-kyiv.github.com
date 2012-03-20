@@ -1,0 +1,139 @@
+@import url("font/open-sans/font.css");
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+	margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;
+}									
+
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 500%;
+	font-weight: normal;
+	margin: 20px 0px 0px 20px;
+	padding: 0px;
+}
+
+#navigation {
+	margin: 20px 0px 10px 0px;
+	padding: 0px 0px 0px 30px;
+	height: 100px;
+	
+	background: rgb(240,240,240);
+}
+
+#navigation .nav-item {
+	margin-right: 24px;
+	vertical-align: middle;
+
+	font-size: 150%; 
+	-webkit-transition: font-size 500ms;
+	-moz-transition: font-size 500ms;
+
+	cursor: pointer;
+	color: #aaa;
+}
+
+#navigation .nav-item.current {
+	font-size: 300%; 
+	-webkit-transition: font-size 500ms;
+	-moz-transition: font-size 500ms;
+	
+	color: black;
+}
+
+#navigation .spring {
+	width: 1px;
+	font-size: 300%; 
+	visibility: hidden;
+}
+
+#container {
+	margin: 0px 0px 0px 20px;
+}
+
+#container .subcont {
+	position: absolute;
+	display: none;
+}
+
+#container .subcont.current {
+	display: block;
+}
+
+.event {
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: top;
+	
+	padding: 0px 10px 10px 10px;
+	margin: 20px 20px 0px 0px;
+	width: 360px;
+	height: 360px;
+	
+	border: 1px solid rgb(200, 200, 200);
+	background: rgb(240,240,240);
+}
+
+.event div.fadeout {
+	position: absolute;
+	margin-top: 310px; /* = .event.height + .event.padding - this.height - .bottom.height */
+	width: 360px;
+	height: 50px;
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(240,240,240,0)),color-stop(1, rgba(240,240,240,1)));
+	background-image: -webkit-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
+	background-image: -moz-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
+	background-image: -ms-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
+	background-image: -o-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
+}
+
+.event div.bottom {
+	position: absolute;
+	margin-top: 360px; /* = .event.height + .event.padding - this.height */
+	width: 360px;
+	height: 10px;
+	background: rgb(240,240,240);
+}
+
+.event .date {
+	font-size: 48px;
+	font-weight: lighter;
+}
+
+.event .title {
+	font-size: 24px;
+	margin-bottom: 12px;
+	margin-top: 6px;
+}
+
+.event .photos {
+	margin-bottom: 12px;
+	white-space:nowrap;
+	overflow: hidden;
+}
+
+.event .photos img {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+}
+
+.member {
+	position: absolute;
+	display: block;
+	vertical-align: top;
+	
+	padding: 10px;
+	margin: 0px 20px 20px 0px;
+	width: 240px;
+	
+	border: 1px solid black;
+	background: white;
+}
+
+
+.member .name {
+	font-size: 150%;
+}
