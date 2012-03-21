@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="date-en-GB.js"></script>
+    <script src="data.js"></script>
+    <script src="format.js"></script>
+    <script src="util.js"></script>
+    <script src="ui.js"></script>
+    <script>
+        $(function() { 
+            generateBlocks(past, $('#container > .past'), createEventDiv)
+            $('#navigation > .past .counter').text(past.length)
+            
+            generateBlocks(future, $('#container > .future'), createEventDiv)
+            $('#navigation > .future .counter').text(future.length)
+            
+            generateBlocks(members, $('#container > .members'), createMemberDiv)
+            $('#navigation > .members .counter').text(members.length)
+            layoutMembers();
+
+            function select(name) {
+                $('#container > .current').removeClass('current')
+                $('#container > .' + name).addClass('current')
+                $('#navigation > .current').removeClass('current')
+                $('#navigation > .' + name).addClass('current')
+            }
+
+            $(["about", "past", "members", "future"]).each(function(i, name) {
+                $('#navigation > .' + name).click(function() { select(name) })
+            })
+            
+            select('past')
+        })
+    </script>
+</head>
+<body>
+    <h1><b>GDG</b> Kyiv-Center</h1>
+    <div id="navigation">
+    	<span class="nav-item about"><span>About</span></span>
+    	<span class="nav-item past"><span><span class="counter">?</span>&nbsp;past&nbsp;events</span></span>
+    	<span class="nav-item members"><span><span class="counter">658</span>&nbsp;members</span></span>
+    	<span class="nav-item future"><span><span class="counter">?</span>&nbsp;future&nbsp;events</span></span>
+    </div>
+    <div id="container">
+    	<div class="subcont about">
+    		<p>З історії Kyiv GTUG Center
+    		<p>2 грудня — онлайн-марафон “Ask Lars — online!”. Ларс відповів на питання у реальному часі та визначив авторів 5-х найкращіх  питань. Це були українські вейвери (наразі — члени Kyiv GTUG Center) Тимур Карімов та Катерина Чаукіна і росіяни Максим Васильєв, Володимир Шуляк та Міхаіл Дектярьов. Переможці та організатори марафону отримали 26 інвайтів на Хабрахабр. Текст марафону опубліковано Хабрахабром та ITC.UA, що стали інформаційними спонсорами події. Партнерами марафону була спільнота Google Wave Росія та десяткі вейверів
+    		з усіх кінців світу.
+    		<p>25-26 листопада — офлайн-марафон “Киів-Мельбурн” за участю Ларса Расмуссена. 25-го листопада відбулися перші у пострадянському просторі збори київської групи користувачів технологій Google — майбутньої Kyiv GTUG Center
+    		<p>10-те листопада — участь у Google Developer Day 2009, Москва. Зустріч із керівниками проекту Google Wave Ларсом Расмуссеном і Стефані Хеннон. Ларс і Стефані демонструють 1500 учасникам GDD09ru хвилі, щойно створені “ветеранами песочниці”. Володимир Іванов домовляється з Ларсом про марафон за участю “отця-розробника” Google Wave. Зустріч із Стефані Лю — координатором програми GTUG переконала Володимира у необхідності організації GTUG у Києві.
+    		Під час GDD09ru вейвери з Києва, Москви, Єкатеринбурга та Санкт-Петербурга провели веселий флешмоб “ПАНАЄХАЛІ” під гаслом “From Kyiv with Love!” біля кафе-шопу студії відомого веб-дизайнера Артемія Лєбєдєва. Артемію був надісланий інвайт на Хвилю.
+    		<p>28-го Жовтня та 4-го листопада — два марафони “РАГУ.ЛІ” на Хвилях” із автором найпопулярнішого ресурсу UAнету — сайту Тетяни Микитенко “РАГУ.ЛІ”
+    		<p>14-те жовтня — Перший Вейв-марафон із засновником спільноти Google Wave Россия Вадімом Барсуковим. Призами за кращі питання Марафону стали інвайти на Хвилю.
+    		<p>Вересень-жовтень — “ветерани пісочниці” утворили віртуальний “ВейWер-Клуб”. Він провів купу транснаціональних акцій, найбільш відомими з яких стали Вейв-марафони.
+    		<p>1 вересня — стартувала preview версія Google Wave. Олег Боженко знову випередив усіх, створивши “Першу українську хвилю”. Всі юзери “пісочниці” отримали інвайти на preview та  почали запрошувати нових вейверів. Тут знову у нагоді стали «Українські хWилі». Через блоґ потрапило до Хвилі багато українських ґіків.
+    		<p>4 серпня — розпочато спільний проект Олега і Володимира — блоґ «Українські хWилі» Цей ресурс об’єднав «онвейвову» та «офвейвову» частини українських юзерів-прихільників новітньої технології Google Wave. Напочатку тількі тут і можна було прочитати перші враження від тестування Хвилі, отримати пораду, як потрапити до «пісочниці» і дізнатися найсвіжіші новини Google Wave
+    		<p>2-4 серпня 2009 року — Олег Боженко і Володимир Іванов створили дві найперші україномовні хвилі у славетній «пісочниці»
+    		<p>*«Пісочниця» https://wave.google.com/a/wavesandbox.com/ — девелоперський ресурс Google. Тут почалися тестування Google Wave на її ранніх стадіях і досі тривають розробки всіх роботів та ґаджетів для Хвилі.	</div>
+    	<div class="subcont past"></div>
+    	<div class="subcont members"></div>
+    	<div class="subcont future"></div>
+    </div>
+</body>
+</html>

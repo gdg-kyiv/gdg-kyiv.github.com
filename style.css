@@ -19,16 +19,16 @@ h1 {
 #navigation {
 	margin: 20px 0px 10px 0px;
 	padding: 0px 0px 0px 30px;
-	height: 100px;
 	
 	background: rgb(240,240,240);
+	font-size: 250%; 
 }
 
 #navigation .nav-item {
 	margin-right: 24px;
-	vertical-align: middle;
+	vertical-align: baseline;
 
-	font-size: 150%; 
+	font-size: 70%; 
 	-webkit-transition: font-size 500ms;
 	-moz-transition: font-size 500ms;
 
@@ -36,18 +36,17 @@ h1 {
 	color: #aaa;
 }
 
+#navigation .nav-item:hover {
+	font-size: 100%; 
+	-webkit-transition: font-size 500ms;
+	-moz-transition: font-size 500ms;
+}
 #navigation .nav-item.current {
-	font-size: 300%; 
+	font-size: 100%; 
 	-webkit-transition: font-size 500ms;
 	-moz-transition: font-size 500ms;
 	
 	color: black;
-}
-
-#navigation .spring {
-	width: 1px;
-	font-size: 300%; 
-	visibility: hidden;
 }
 
 #container {
@@ -56,11 +55,30 @@ h1 {
 
 #container .subcont {
 	position: absolute;
-	display: none;
+	opacity: 0;
 }
 
+#container > .about { -webkit-transition: opacity 500ms; }
+#container > .past,
+#container > .future,
+#container > .members { opacity: 1; }
+
 #container .subcont.current {
-	display: block;
+	opacity: 1;
+	z-index: 10;
+}
+
+#container .subcont .block {
+	opacity: 0;
+	-webkit-transition: opacity 500ms;
+	
+	border: 1px solid rgb(200, 200, 200);
+	background: rgb(240,240,240);
+}
+
+#container .subcont.current .block {
+	opacity: 1;
+	-webkit-transition: opacity 500ms;
 }
 
 .event {
@@ -72,9 +90,6 @@ h1 {
 	margin: 20px 20px 0px 0px;
 	width: 360px;
 	height: 360px;
-	
-	border: 1px solid rgb(200, 200, 200);
-	background: rgb(240,240,240);
 }
 
 .event div.fadeout {
@@ -118,6 +133,10 @@ h1 {
 	width: 100px;
 	height: 100px;
 	margin-right: 10px;
+}
+
+#container > .members {
+	margin-top: 20px;
 }
 
 .member {

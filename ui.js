@@ -1,107 +1,84 @@
-function createUi() {
-    var TIME = 500;
-    var CLASS_CURRENT = 'current';
+var TIME = 500;
 
-	var pages = {};
-	var navs = {}
-	var currentPageId;
-            
-    var ui = {
-        addPage: function(id, ePage, eNav) {
-            pages[id] = createPage(id, ePage);
-            navs[id] = createNav(id, eNav);
-            return ui;
-        },
-        
-        addGridPage: function(id, ePage, eCounter, eNav) {
-            pages[id] = createGridPage(id, ePage, eCounter);
-            navs[id] = createNav(id, eNav);
-            return ui;
-        },
-        
-        getPage: function(id) { return pages[id]; },
-        getNav: function(id) { return navs[id]; },
-        
-        startPage: function(id) {
-            currentPageId = id;
-            pages[currentPageId].preShow();
-            pages[currentPageId].show();
-        },
-        
-        openPage: function(id) {
-            pages[id].preShow();
-            
-            pages[currentPageId].hide(function() {
-                currentPageId = id;
-                pages[currentPageId].show();
-            });
-        },
+function assignTransitionDelay(elem, order) {
+    var delay = (TIME / 2) * (order / (order+1))
+    elem.css('-webkit-transition-delay', Math.round(delay) + 'ms')
+}
+
+function generateBlocks(data, contElem, createElement) {
+    $(data).each(function(i, value) {
+        var elem = createElement(value)
+        assignTransitionDelay(elem, i)
+        contElem.append(elem)
+    })
+}
+
+function createEventDiv(event) {
+    var contentDiv, photosDiv
+    var eventDiv = $('<div></div>').addClass('block').addClass('event')
+        .append(contentDiv = $('<div></div>')
+            .append($('<div></div>').addClass('fadeout'))
+            .append($('<div></div>').addClass('bottom'))
+            .append($('<div>' + formatDate(event) + '</div>').addClass('date'))
+            .append($('<div>' + event['title'] + '</div>').addClass('title'))
+            .append(photosDiv = $('<div></div>').addClass('photos').hide())
+    )
+    
+    if (event['description']) {
+        eventDiv.append($('<div>' + event['description'] + '</div>').addClass('description'))
     }
+    
+    if (event['photos']) {
+        $(event['photos']).each(function(i, url) { photosDiv.append($('<img src="' + url + '">')) })
+        photosDiv.show()
+    }
+    
+    return eventDiv
+}
 
-    function createNav(id, element) {
-        element.click(function() {
-            ui.openPage(id); 
+function createMemberDiv(member) {
+    var contentDiv = $('<div></div>').addClass('block').addClass('member')
+            .append($('<div>' + member['name'] + '</div>').addClass('name'))
+            .append($('<div>' + member['visits'] + ' visits</div>').addClass('visits'))
+    
+    if (member['websites']) {
+        var html = ''
+    
+        $.each(member['websites'], function(name, url) { 
+            var comma = html == '' ? '' : ', '
+            html += comma + '<a href="' + url + '">' + name + '</a>' 
         });
         
-        return {
-            select: function() { element.addClass(CLASS_CURRENT); },
-            deselect: function() { element.removeClass(CLASS_CURRENT); },    
-        }
+        contentDiv.append($(html))
     }
     
-    function createPage(id, element) {
-        return {
-            preShow: function() {
-                ui.getNav(id).select();
-            },
-            hide: function(onEnd) {
-                ui.getNav(id).deselect();
-                element.animate({ opacity: '0' }, TIME, function() {
-                    element.removeClass(CLASS_CURRENT);
-                    onEnd();
-                });
-            },
-            show: function() {
-                element.addClass(CLASS_CURRENT);
-                element.css('opacity', '0').animate({ opacity: '1' }, TIME);
-            },
-        }
+    return contentDiv;
+}
+
+var memberColumns = 0;
+
+function layoutMembers() {
+    var availableWidth = $('#container').innerWidth();
+    var totalMemberWidth = $($('#container > .members').children()[0]).outerWidth(true);
+
+    var nColumns = Math.floor(availableWidth / totalMemberWidth);
+    if (nColumns == memberColumns) {
+        return;
     }
     
-    function createGridPage(id, element, eCounter) {
-        return {
-            preShow: function() {
-                ui.getNav(id).select();
-            },
-            hide: function(onEnd) {
-                ui.getNav(id).deselect();
-                
-                element.children().each(function(i, eCell) {
-                    $(eCell).delay(TIME/2*(i/(i+1))).animate({ opacity: '0' }, TIME/2);
-                });
-                
-                setTimeout(function() {
-                    element.removeClass(CLASS_CURRENT);
-                    onEnd();
-                }, TIME);
-            },
-            show: function() {
-                element.addClass(CLASS_CURRENT);
-                
-                element.children().each(function(i, eCell) {
-                    $(eCell).css('opacity', '0').delay(TIME/2*(i/(i+1))).animate({ opacity: '1' }, TIME);
-                    if (eCounter) { setTimeout(function() { eCounter.text(i+1); }, TIME/2*(i/(i+1))); } 
-                });
-            },
-            generate: function(data, createElement) {
-                $(data).each(function(i, item) {
-                    element.append(createElement(i, item));
-                });
-                
-                if (eCounter) { eCounter.text(data.length); }
-            }
-        };
-    }
+    memberColumns = nColumns;
     
-    return ui;
+    var colHeights = [];
+    for (var i = 0; i < nColumns && i < 10; ++i) { colHeights[i] = 0; }
+    
+    $('#container > .members').children().each(function(i, e) {
+        e = $(e);
+        var col = indexOfMin(colHeights);
+        var top = colHeights[col];
+        var left = col * totalMemberWidth;
+        e.css({ 'margin-top': top, 'margin-left': left });
+        assignTransitionDelay(e, col)
+        var totalMemberHeight = e.outerHeight(true) - parseInt(e.css('margin-top'), 10);
+        colHeights[col] += totalMemberHeight;
+    });
 }
