@@ -1,0 +1,142 @@
+@import 'nib'
+@import "reset.css"
+@import url("font/open-sans/font.css");
+
+$default-bg = rgb(240,240,240)
+$default-border = rgb(200, 200, 200)
+
+body
+	font-family sans-serif
+	
+.gdg-logo
+	font normal 500% 'Open Sans', sans-serif
+	margin 20px 0px 0px 20px
+	padding 0px
+	
+#navigation
+	$font-size-normal = 150%
+	$font-size-current = 250%
+	$text-color-normal = #aaa
+	$text-color-current = black
+	$transition = font-size 250ms ease
+
+	margin 20px 0px 10px 0px
+	padding 0px 0px 0px 30px
+	background $default-bg
+	font-size $font-size-current
+	
+	.nav-item
+		margin-right 24px
+		vertical-align baseline
+		font-size (100 * $font-size-normal / $font-size-current)
+		transition $transition
+		cursor pointer
+		color $text-color-normal
+
+		&.current, &:hover
+			font-size 100%
+			transition $transition
+		
+		&.current
+			color $text-color-current
+			
+#container
+	$transition = opacity 500ms
+
+	margin 0px 0px 0px 20px
+	
+	> div
+		position absolute
+		opacity 0
+
+		&.about
+			transition $transition
+		
+		&.past, &.future, &.members
+			opacity 1
+			
+		&.members
+			margin-top 20px
+			
+		&.current
+			opacity 1
+			z-index 10
+
+		&.tiled
+			> .block
+				opacity 0
+				transition $transition
+				border 1px solid $default-border
+				background $default-bg
+			
+			&.current > .block
+				opacity 1
+				transition $transition
+
+.block
+	$margin = 20px
+	$padding = 10px
+
+	&.event
+		$width = 360px
+		$height = 360px
+		$fadeout-height = 50px
+		$bottom-height = 10px
+
+		display inline-block
+		overflow hidden
+		vertical-align top
+		padding 0px $padding $padding $padding
+		margin $margin $margin 0px 0px
+		width $width
+		height $height
+		
+		.fadeout
+			position absolute
+			margin-top ($height + $padding - $fadeout-height - $bottom-height)
+			width $width
+			height $fadeout-height
+			background-image linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1))
+		
+		.bottom
+			position absolute
+			margin-top ($height + $padding - $bottom-height)
+			width $width
+			height $bottom-height
+			background $default-bg
+
+		.date
+			font-size 48px
+			font-weight lighter
+
+		.title 
+			font-size 24px
+			margin-bottom 12px
+			margin-top 6px
+
+		.photos 
+			margin-bottom 12px
+			white-space nowrap
+			overflow hidden
+
+			img
+				width 100px
+				height 100px
+				margin-right 10px
+
+	&.member 
+		$width = 240px
+	
+		position absolute
+		display block
+		vertical-align top
+		
+		padding $padding
+		margin 0px $margin $margin 0px
+		width $width
+		
+		border 1px solid black
+		background white
+
+		.name 
+			font-size 150%

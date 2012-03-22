@@ -1,158 +1,137 @@
+@import "reset.css";
 @import url("font/open-sans/font.css");
-
-html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
-	margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;
-}									
-
 body {
-	font-family: sans-serif;
+  font-family: sans-serif;
 }
-
-h1 {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 500%;
-	font-weight: normal;
-	margin: 20px 0px 0px 20px;
-	padding: 0px;
+.gdg-logo {
+  font: normal 500% 'Open Sans', sans-serif;
+  margin: 20px 0px 0px 20px;
+  padding: 0px;
 }
-
 #navigation {
-	margin: 20px 0px 10px 0px;
-	padding: 0px 0px 0px 30px;
-	
-	background: rgb(240,240,240);
-	font-size: 250%; 
+  margin: 20px 0px 10px 0px;
+  padding: 0px 0px 0px 30px;
+  background: #f0f0f0;
+  font-size: 250%;
 }
-
 #navigation .nav-item {
-	margin-right: 24px;
-	vertical-align: baseline;
-
-	font-size: 70%; 
-	-webkit-transition: font-size 500ms;
-	-moz-transition: font-size 500ms;
-
-	cursor: pointer;
-	color: #aaa;
+  margin-right: 24px;
+  vertical-align: baseline;
+  font-size: 60%;
+  -webkit-transition: font-size 250ms ease;
+  -moz-transition: font-size 250ms ease;
+  transition: font-size 250ms ease;
+  cursor: pointer;
+  color: #aaa;
 }
-
+#navigation .nav-item.current,
 #navigation .nav-item:hover {
-	font-size: 100%; 
-	-webkit-transition: font-size 500ms;
-	-moz-transition: font-size 500ms;
+  font-size: 100%;
+  -webkit-transition: font-size 250ms ease;
+  -moz-transition: font-size 250ms ease;
+  transition: font-size 250ms ease;
 }
 #navigation .nav-item.current {
-	font-size: 100%; 
-	-webkit-transition: font-size 500ms;
-	-moz-transition: font-size 500ms;
-	
-	color: black;
+  color: #000;
 }
-
 #container {
-	margin: 0px 0px 0px 20px;
+  margin: 0px 0px 0px 20px;
 }
-
-#container .subcont {
-	position: absolute;
-	opacity: 0;
+#container > div {
+  position: absolute;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
-
-#container > .about { -webkit-transition: opacity 500ms; }
-#container > .past,
-#container > .future,
-#container > .members { opacity: 1; }
-
-#container .subcont.current {
-	opacity: 1;
-	z-index: 10;
+#container > div.about {
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  transition: opacity 500ms;
 }
-
-#container .subcont .block {
-	opacity: 0;
-	-webkit-transition: opacity 500ms;
-	
-	border: 1px solid rgb(200, 200, 200);
-	background: rgb(240,240,240);
+#container > div.past,
+#container > div.future,
+#container > div.members {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 }
-
-#container .subcont.current .block {
-	opacity: 1;
-	-webkit-transition: opacity 500ms;
+#container > div.members {
+  margin-top: 20px;
 }
-
-.event {
-	display: inline-block;
-	overflow: hidden;
-	vertical-align: top;
-	
-	padding: 0px 10px 10px 10px;
-	margin: 20px 20px 0px 0px;
-	width: 360px;
-	height: 360px;
+#container > div.current {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  z-index: 10;
 }
-
-.event div.fadeout {
-	position: absolute;
-	margin-top: 310px; /* = .event.height + .event.padding - this.height - .bottom.height */
-	width: 360px;
-	height: 50px;
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(240,240,240,0)),color-stop(1, rgba(240,240,240,1)));
-	background-image: -webkit-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
-	background-image: -moz-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
-	background-image: -ms-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
-	background-image: -o-linear-gradient(top, rgba(240,240,240,0), rgba(240,240,240, 1));
+#container > div.tiled > .block {
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  transition: opacity 500ms;
+  border: 1px solid #c8c8c8;
+  background: #f0f0f0;
 }
-
-.event div.bottom {
-	position: absolute;
-	margin-top: 360px; /* = .event.height + .event.padding - this.height */
-	width: 360px;
-	height: 10px;
-	background: rgb(240,240,240);
+#container > div.tiled.current > .block {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  transition: opacity 500ms;
 }
-
-.event .date {
-	font-size: 48px;
-	font-weight: lighter;
+.block.event {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0px 10px 10px 10px;
+  margin: 20px 20px 0px 0px;
+  width: 360px;
+  height: 360px;
 }
-
-.event .title {
-	font-size: 24px;
-	margin-bottom: 12px;
-	margin-top: 6px;
+.block.event .fadeout {
+  position: absolute;
+  margin-top: 310px;
+  width: 360px;
+  height: 50px;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(240,240,240,0.00)), color-stop(1, #f0f0f0));
+  background-image: -webkit-linear-gradient(top, rgba(240,240,240,0.00) 0%, #f0f0f0 100%);
+  background-image: -moz-linear-gradient(top, rgba(240,240,240,0.00) 0%, #f0f0f0 100%);
+  background-image: linear-gradient(top, rgba(240,240,240,0.00) 0%, #f0f0f0 100%);
 }
-
-.event .photos {
-	margin-bottom: 12px;
-	white-space:nowrap;
-	overflow: hidden;
+.block.event .bottom {
+  position: absolute;
+  margin-top: 360px;
+  width: 360px;
+  height: 10px;
+  background: #f0f0f0;
 }
-
-.event .photos img {
-	width: 100px;
-	height: 100px;
-	margin-right: 10px;
+.block.event .date {
+  font-size: 48px;
+  font-weight: lighter;
 }
-
-#container > .members {
-	margin-top: 20px;
+.block.event .title {
+  font-size: 24px;
+  margin-bottom: 12px;
+  margin-top: 6px;
 }
-
-.member {
-	position: absolute;
-	display: block;
-	vertical-align: top;
-	
-	padding: 10px;
-	margin: 0px 20px 20px 0px;
-	width: 240px;
-	
-	border: 1px solid black;
-	background: white;
+.block.event .photos {
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
 }
-
-
-.member .name {
-	font-size: 150%;
+.block.event .photos img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.block.member {
+  position: absolute;
+  display: block;
+  vertical-align: top;
+  padding: 10px;
+  margin: 0px 20px 20px 0px;
+  width: 240px;
+  border: 1px solid #000;
+  background: #fff;
+}
+.block.member .name {
+  font-size: 150%;
 }
