@@ -59,34 +59,34 @@ var memberColumns = 0
 var memberDivs = null
 
 function layoutMembers() {
-	if (!memberDivs) {
-		memberDivs = $('#container > .members > .member')
-	}
+	// Initialize member divs
+	if (!memberDivs) { memberDivs = $('#container > .members > .member') }
 
+	// Check if columns need to be rearranged at all
     var availableWidth = $('#container').innerWidth()
     var totalMemberWidth = $(memberDivs[0]).outerWidth(true)
-
     var nColumns = Math.floor(availableWidth / totalMemberWidth)
-    if (nColumns == memberColumns) { return }
+	if (nColumns == memberColumns) { return } 
+	memberColumns = nColumns > 10 ? 10 : nColumns
 
+	// Remove columns and detach members' divs
 	memberDivs.detach()
-	$('#container > .members > .column').remove()
-    
-    memberColumns = nColumns;
-    
+	var membersDiv = $('#container > .members')
+	membersDiv.find('> .column').remove()
+
+	// Recreate columns
     var colHeights = [];
-    for (var i = 0; i < nColumns && i < 10; ++i) { 
-		var columnDiv = $('<div></div>').addClass('column')
-		$('#container > .members').append(columnDiv)
-		colHeights[i] = columnDiv.height()
+    for (var i = 0; i < memberColumns; ++i) { 
+		colHeights[i] = $('<div></div>')
+			.addClass('column')
+			.appendTo(membersDiv)
+			.height()
 	}
-	
-	var columnDivs = $('#container > .members > .column')
-	
+
+	// Attach members' divs to right columns
+	var columnDivs = membersDiv.find('> .column')
 	memberDivs.each(function(i, e) {
 		var col = indexOfMin(colHeights)
-		var columnDiv = $(columnDivs.get(col))
-		columnDiv.append(e)
-		colHeights[col] = columnDiv.height()
+		colHeights[col] = $(columnDivs.get(col)).append(e).height()
 	})
 }
