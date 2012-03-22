@@ -61,7 +61,12 @@ body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   z-index: 10;
 }
-#container > div.tiled > .block {
+#container > div.columns > .column {
+  vertical-align: top;
+  display: inline-block;
+}
+#container > div.tiled .block,
+#container > div.columns .block {
   opacity: 0;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   -webkit-transition: opacity 500ms;
@@ -70,7 +75,8 @@ body {
   border: 1px solid #c8c8c8;
   background: #f0f0f0;
 }
-#container > div.tiled.current > .block {
+#container > div.tiled.current .block,
+#container > div.columns.current .block {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   -webkit-transition: opacity 500ms;
@@ -123,7 +129,6 @@ body {
   margin-right: 10px;
 }
 .block.member {
-  position: absolute;
   display: block;
   vertical-align: top;
   padding: 10px;

@@ -55,30 +55,38 @@ function createMemberDiv(member) {
     return contentDiv;
 }
 
-var memberColumns = 0;
+var memberColumns = 0
+var memberDivs = null
 
 function layoutMembers() {
-    var availableWidth = $('#container').innerWidth();
-    var totalMemberWidth = $($('#container > .members').children()[0]).outerWidth(true);
+	if (!memberDivs) {
+		memberDivs = $('#container > .members > .member')
+	}
 
-    var nColumns = Math.floor(availableWidth / totalMemberWidth);
-    if (nColumns == memberColumns) {
-        return;
-    }
+    var availableWidth = $('#container').innerWidth()
+    var totalMemberWidth = $(memberDivs[0]).outerWidth(true)
+
+    var nColumns = Math.floor(availableWidth / totalMemberWidth)
+    if (nColumns == memberColumns) { return }
+
+	memberDivs.detach()
+	$('#container > .members > .column').remove()
     
     memberColumns = nColumns;
     
     var colHeights = [];
-    for (var i = 0; i < nColumns && i < 10; ++i) { colHeights[i] = 0; }
-    
-    $('#container > .members').children().each(function(i, e) {
-        e = $(e);
-        var col = indexOfMin(colHeights);
-        var top = colHeights[col];
-        var left = col * totalMemberWidth;
-        e.css({ 'margin-top': top, 'margin-left': left });
-        assignTransitionDelay(e, col)
-        var totalMemberHeight = e.outerHeight(true) - parseInt(e.css('margin-top'), 10);
-        colHeights[col] += totalMemberHeight;
-    });
+    for (var i = 0; i < nColumns && i < 10; ++i) { 
+		var columnDiv = $('<div></div>').addClass('column')
+		$('#container > .members').append(columnDiv)
+		colHeights[i] = columnDiv.height()
+	}
+	
+	var columnDivs = $('#container > .members > .column')
+	
+	memberDivs.each(function(i, e) {
+		var col = indexOfMin(colHeights)
+		var columnDiv = $(columnDivs.get(col))
+		columnDiv.append(e)
+		colHeights[col] = columnDiv.height()
+	})
 }

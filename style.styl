@@ -62,17 +62,22 @@ body
 			opacity 1
 			z-index 10
 
-		&.tiled
-			> .block
+		&.columns
+			> .column
+				vertical-align top
+				display inline-block
+
+		&.tiled, &.columns
+			.block
 				opacity 0
 				transition $transition
 				border 1px solid $default-border
 				background $default-bg
 			
-			&.current > .block
+			&.current .block
 				opacity 1
 				transition $transition
-
+				
 .block
 	$margin = 20px
 	$padding = 10px
@@ -127,7 +132,6 @@ body
 	&.member 
 		$width = 240px
 	
-		position absolute
 		display block
 		vertical-align top
 		

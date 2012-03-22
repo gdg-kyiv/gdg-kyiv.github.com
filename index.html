@@ -18,7 +18,7 @@
             
             generateBlocks(members, $('#container > .members'), createMemberDiv)
             $('#navigation > .members .counter').text(members.length)
-            layoutMembers();
+            layoutMembers()
 
             function select(name) {
                 $('#container > .current').removeClass('current')
@@ -32,6 +32,8 @@
             })
             
             select('past')
+			
+			$(window).resize(function() { layoutMembers() })
         })
     </script>
 </head>
@@ -59,7 +61,7 @@
     		<p>2-4 серпня 2009 року — Олег Боженко і Володимир Іванов створили дві найперші україномовні хвилі у славетній «пісочниці»
     		<p>*«Пісочниця» https://wave.google.com/a/wavesandbox.com/ — девелоперський ресурс Google. Тут почалися тестування Google Wave на її ранніх стадіях і досі тривають розробки всіх роботів та ґаджетів для Хвилі.	</div>
     	<div class="subcont tiled past"></div>
-    	<div class="subcont tiled members"></div>
+    	<div class="subcont columns members"></div>
     	<div class="subcont tiled future"></div>
     </div>
 </body>
