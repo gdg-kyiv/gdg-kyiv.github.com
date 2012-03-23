@@ -4,9 +4,10 @@ body {
   font-family: sans-serif;
 }
 .gdg-logo {
+  background: url("header-background.jpg");
   font: normal 500% 'Open Sans', sans-serif;
-  margin: 20px 0px 0px 20px;
-  padding: 0px;
+  padding: 20px 0px 0px 20px;
+  margin: 0px;
 }
 .gdg-logo > span {
   position: relative;
@@ -21,7 +22,7 @@ body {
 }
 #navigation {
   margin: 0px 0px 10px 0px;
-  padding: 0px 0px 0px 30px;
+  padding: 5px 0px 5px 30px;
   background: #f0f0f0;
   font-size: 250%;
 }
