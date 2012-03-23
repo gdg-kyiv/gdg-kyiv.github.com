@@ -1,21 +1,14 @@
 var TIME = 500;
 
-function assignTransitionDelay(elem, order) {
-    var delay = (TIME / 2) * (order / (order+1))
-    elem.css('-webkit-transition-delay', Math.round(delay) + 'ms')
-}
-
-function generateBlocks(data, contElem, createElement) {
+function generateBlocks(data, contElem, createElement, addDelay) {
     $(data).each(function(i, value) {
-        var elem = createElement(value)
-        assignTransitionDelay(elem, i)
-        contElem.append(elem)
+        contElem.append(createElement(value))
     })
 }
 
 function createEventDiv(event) {
     var contentDiv, photosDiv
-    var eventDiv = $('<div></div>').addClass('block').addClass('event')
+    var eventDiv = $('<div></div>').addClass('block delayed event')
         .append(contentDiv = $('<div></div>')
             .append($('<div></div>').addClass('fadeout'))
             .append($('<div></div>').addClass('bottom'))
@@ -37,7 +30,7 @@ function createEventDiv(event) {
 }
 
 function createMemberDiv(member) {
-    var contentDiv = $('<div></div>').addClass('block').addClass('member')
+    var contentDiv = $('<div></div>').addClass('block member')
             .append($('<div>' + member['name'] + '</div>').addClass('name'))
             .append($('<div>' + member['visits'] + ' visits</div>').addClass('visits'))
     
@@ -77,10 +70,8 @@ function layoutMembers() {
 	// Recreate columns
     var colHeights = [];
     for (var i = 0; i < memberColumns; ++i) { 
-		colHeights[i] = $('<div></div>')
-			.addClass('column')
-			.appendTo(membersDiv)
-			.height()
+		var columnDiv = $('<div></div>').addClass('column delayed').appendTo(membersDiv)
+		colHeights[i] = columnDiv.height()
 	}
 
 	// Attach members' divs to right columns

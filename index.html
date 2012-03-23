@@ -4,21 +4,31 @@
     <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="date-en-GB.js"></script>
-    <script src="data.js"></script>
     <script src="format.js"></script>
     <script src="util.js"></script>
     <script src="ui.js"></script>
+    <script src="data-mock.js"></script>
     <script>
         $(function() { 
-            generateBlocks(past, $('#container > .past'), createEventDiv)
-            $('#navigation > .past .counter').text(past.length)
+            requestData(function(data) {
+                generateBlocks(data['past'], $('#container > .past'), createEventDiv, true)
+                $('#navigation > .past .counter').text(data['past'].length)
+                
+                generateBlocks(data['future'], $('#container > .future'), createEventDiv, true)
+                $('#navigation > .future .counter').text(data['future'].length)
+                
+                generateBlocks(data['members'], $('#container > .members'), createMemberDiv, false)
+                $('#navigation > .members .counter').text(data['members'].length)
+                layoutMembers()
             
-            generateBlocks(future, $('#container > .future'), createEventDiv)
-            $('#navigation > .future .counter').text(future.length)
-            
-            generateBlocks(members, $('#container > .members'), createMemberDiv)
-            $('#navigation > .members .counter').text(members.length)
-            layoutMembers()
+                $(window).resize(function() { layoutMembers() })
+                
+                $('#navigation > .loading').addClass('inactive')
+                $('#navigation > .nav-item').removeClass('inactive')
+                $('#container').removeClass('inactive')
+            }, function(jqXHR, textStatus, errorThrown) {
+                alert('FAIL: ' + textStatus + " " + errorThrown)
+            })
 
             function select(name) {
                 $('#container > .current').removeClass('current')
@@ -32,20 +42,19 @@
             })
             
             select('past')
-			
-			$(window).resize(function() { layoutMembers() })
         })
     </script>
 </head>
 <body>
     <h1 class="gdg-logo"><img src="gdg.svg"><span><b>GDG</b> Kyiv-Center</span></h1>
     <div id="navigation">
-    	<span class="nav-item about"><span>About</span></span>
-    	<span class="nav-item past"><span><span class="counter">?</span>&nbsp;past&nbsp;events</span></span>
-    	<span class="nav-item future"><span><span class="counter">?</span>&nbsp;future&nbsp;events</span></span>
-    	<span class="nav-item members"><span><span class="counter">658</span>&nbsp;members</span></span>
+        <span class="loading">Loading...</span>
+    	<span class="inactive nav-item about"><span>About</span></span>
+    	<span class="inactive nav-item past"><span><span class="counter">?</span>&nbsp;past&nbsp;events</span></span>
+    	<span class="inactive nav-item future"><span><span class="counter">?</span>&nbsp;future&nbsp;events</span></span>
+    	<span class="inactive nav-item members"><span><span class="counter">658</span>&nbsp;members</span></span>
     </div>
-    <div id="container">
+    <div id="container" class="inactive">
     	<div class="subcont about">
     		<p>З історії Kyiv GTUG Center
     		<p>2 грудня — онлайн-марафон “Ask Lars — online!”. Ларс відповів на питання у реальному часі та визначив авторів 5-х найкращіх  питань. Це були українські вейвери (наразі — члени Kyiv GTUG Center) Тимур Карімов та Катерина Чаукіна і росіяни Максим Васильєв, Володимир Шуляк та Міхаіл Дектярьов. Переможці та організатори марафону отримали 26 інвайтів на Хабрахабр. Текст марафону опубліковано Хабрахабром та ITC.UA, що стали інформаційними спонсорами події. Партнерами марафону була спільнота Google Wave Росія та десяткі вейверів

@@ -4,6 +4,7 @@
 
 $default-bg = rgb(240,240,240)
 $default-border = rgb(200, 200, 200)
+$delay = unit(250, ms)
 
 body
 	font-family sans-serif
@@ -30,40 +31,57 @@ body
 	$font-size-current = 250%
 	$text-color-normal = #aaa
 	$text-color-current = black
-	$transition = font-size 250ms ease
+	
+	$font-transition = font-size 250ms ease
+	$appear-transition = opacity 1s ease, visibility 0s 1s
+	$appear-transition-delayed = opacity 1s ease 1s, visibility 0s 1s
 
 	margin 0px 0px 10px 0px
-	padding 5px 0px 5px 30px
+	padding 5px 20px 5px 30px
 	background $default-bg
 	font-size $font-size-current
+	color $text-color-normal
+
+	.loading
+		position: absolute
+		vertical-align baseline
+		
+		&.inactive
+			opacity 0
+			visibility hidden
+			transition $appear-transition
 	
 	.nav-item
-		margin-right 24px
+		margin-right 20px
 		vertical-align baseline
 		font-size (100 * $font-size-normal / $font-size-current)
-		transition $transition
+		transition $font-transition, $appear-transition-delayed
 		cursor pointer
-		color $text-color-normal
+		
+		&.inactive
+			opacity 0
+			visibility hidden
 
 		&.current, &:hover
 			font-size 100%
-			transition $transition
 		
 		&.current
 			color $text-color-current
 			
 #container
-	$transition = opacity 500ms
-
 	margin 0px 0px 0px 20px
+	transition opacity 1s ease 1s
+	
+	&.inactive
+		opacity 0
 	
 	> div
 		position absolute
 		opacity 0
 
 		&.about
-			transition $transition
-		
+			transition opacity $delay ease
+
 		&.past, &.future, &.members
 			opacity 1
 			
@@ -74,21 +92,21 @@ body
 			opacity 1
 			z-index 10
 
-		&.columns
+		.block
+			border 1px solid $default-border
+			background $default-bg
+
+		&.tiled, &.columns
 			> .column
 				vertical-align top
 				display inline-block
 
-		&.tiled, &.columns
-			.block
+			> .block, > .column
 				opacity 0
-				transition $transition
-				border 1px solid $default-border
-				background $default-bg
 			
-			&.current .block
-				opacity 1
-				transition $transition
+			&.current 
+				> .block, > .column
+					opacity 1
 				
 .block
 	$margin = 20px
@@ -142,17 +160,26 @@ body
 				margin-right 10px
 
 	&.member 
-		$width = 240px
-	
 		display block
 		vertical-align top
 		
 		padding $padding
 		margin 0px $margin $margin 0px
-		width $width
+		width 240px
 		
 		border 1px solid black
 		background white
 
 		.name 
 			font-size 150%
+			
+.delayed
+	$limit = 10
+	delay($i)
+		unit(round($delay * (($i - 1)/$i)), ms)
+	
+	transition-delay $delay  
+	
+	for $i in 1..$limit
+		&:nth-child({$i})
+			transition opacity 500ms ease delay($i)

@@ -22,32 +22,53 @@ body {
 }
 #navigation {
   margin: 0px 0px 10px 0px;
-  padding: 5px 0px 5px 30px;
+  padding: 5px 20px 5px 30px;
   background: #f0f0f0;
   font-size: 250%;
+  color: #aaa;
+}
+#navigation .loading {
+  position: absolute;
+  vertical-align: baseline;
+}
+#navigation .loading.inactive {
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  visibility: hidden;
+  -webkit-transition: opacity 1s ease, visibility 0s 1s;
+  -moz-transition: opacity 1s ease, visibility 0s 1s;
+  transition: opacity 1s ease, visibility 0s 1s;
 }
 #navigation .nav-item {
-  margin-right: 24px;
+  margin-right: 20px;
   vertical-align: baseline;
   font-size: 60%;
-  -webkit-transition: font-size 250ms ease;
-  -moz-transition: font-size 250ms ease;
-  transition: font-size 250ms ease;
+  -webkit-transition: font-size 250ms ease, opacity 1s ease 1s, visibility 0s 1s;
+  -moz-transition: font-size 250ms ease, opacity 1s ease 1s, visibility 0s 1s;
+  transition: font-size 250ms ease, opacity 1s ease 1s, visibility 0s 1s;
   cursor: pointer;
-  color: #aaa;
+}
+#navigation .nav-item.inactive {
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  visibility: hidden;
 }
 #navigation .nav-item.current,
 #navigation .nav-item:hover {
   font-size: 100%;
-  -webkit-transition: font-size 250ms ease;
-  -moz-transition: font-size 250ms ease;
-  transition: font-size 250ms ease;
 }
 #navigation .nav-item.current {
   color: #000;
 }
 #container {
   margin: 0px 0px 0px 20px;
+  -webkit-transition: opacity 1s ease 1s;
+  -moz-transition: opacity 1s ease 1s;
+  transition: opacity 1s ease 1s;
+}
+#container.inactive {
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 #container > div {
   position: absolute;
@@ -55,9 +76,9 @@ body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 #container > div.about {
-  -webkit-transition: opacity 500ms;
-  -moz-transition: opacity 500ms;
-  transition: opacity 500ms;
+  -webkit-transition: opacity 250ms ease;
+  -moz-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
 }
 #container > div.past,
 #container > div.future,
@@ -73,27 +94,28 @@ body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   z-index: 10;
 }
+#container > div .block {
+  border: 1px solid #c8c8c8;
+  background: #f0f0f0;
+}
+#container > div.tiled > .column,
 #container > div.columns > .column {
   vertical-align: top;
   display: inline-block;
 }
-#container > div.tiled .block,
-#container > div.columns .block {
+#container > div.tiled > .block,
+#container > div.columns > .block,
+#container > div.tiled > .column,
+#container > div.columns > .column {
   opacity: 0;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  -webkit-transition: opacity 500ms;
-  -moz-transition: opacity 500ms;
-  transition: opacity 500ms;
-  border: 1px solid #c8c8c8;
-  background: #f0f0f0;
 }
-#container > div.tiled.current .block,
-#container > div.columns.current .block {
+#container > div.tiled.current > .block,
+#container > div.columns.current > .block,
+#container > div.tiled.current > .column,
+#container > div.columns.current > .column {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  -webkit-transition: opacity 500ms;
-  -moz-transition: opacity 500ms;
-  transition: opacity 500ms;
 }
 .block.event {
   display: inline-block;
@@ -151,4 +173,59 @@ body {
 }
 .block.member .name {
   font-size: 150%;
+}
+.delayed {
+  -webkit-transition-delay: 250ms;
+  -moz-transition-delay: 250ms;
+  transition-delay: 250ms;
+}
+.delayed:nth-child(1) {
+  -webkit-transition: opacity 500ms ease 0ms;
+  -moz-transition: opacity 500ms ease 0ms;
+  transition: opacity 500ms ease 0ms;
+}
+.delayed:nth-child(2) {
+  -webkit-transition: opacity 500ms ease 125ms;
+  -moz-transition: opacity 500ms ease 125ms;
+  transition: opacity 500ms ease 125ms;
+}
+.delayed:nth-child(3) {
+  -webkit-transition: opacity 500ms ease 167ms;
+  -moz-transition: opacity 500ms ease 167ms;
+  transition: opacity 500ms ease 167ms;
+}
+.delayed:nth-child(4) {
+  -webkit-transition: opacity 500ms ease 188ms;
+  -moz-transition: opacity 500ms ease 188ms;
+  transition: opacity 500ms ease 188ms;
+}
+.delayed:nth-child(5) {
+  -webkit-transition: opacity 500ms ease 200ms;
+  -moz-transition: opacity 500ms ease 200ms;
+  transition: opacity 500ms ease 200ms;
+}
+.delayed:nth-child(6) {
+  -webkit-transition: opacity 500ms ease 208ms;
+  -moz-transition: opacity 500ms ease 208ms;
+  transition: opacity 500ms ease 208ms;
+}
+.delayed:nth-child(7) {
+  -webkit-transition: opacity 500ms ease 214ms;
+  -moz-transition: opacity 500ms ease 214ms;
+  transition: opacity 500ms ease 214ms;
+}
+.delayed:nth-child(8) {
+  -webkit-transition: opacity 500ms ease 219ms;
+  -moz-transition: opacity 500ms ease 219ms;
+  transition: opacity 500ms ease 219ms;
+}
+.delayed:nth-child(9) {
+  -webkit-transition: opacity 500ms ease 222ms;
+  -moz-transition: opacity 500ms ease 222ms;
+  transition: opacity 500ms ease 222ms;
+}
+.delayed:nth-child(10) {
+  -webkit-transition: opacity 500ms ease 225ms;
+  -moz-transition: opacity 500ms ease 225ms;
+  transition: opacity 500ms ease 225ms;
 }
