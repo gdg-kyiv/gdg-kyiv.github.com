@@ -8,8 +8,19 @@ body {
   margin: 20px 0px 0px 20px;
   padding: 0px;
 }
+.gdg-logo > span {
+  position: relative;
+  left: 20px;
+  top: -20px;
+}
+.gdg-logo > span > b {
+  font-weight: bolder;
+}
+.gdg-logo > img {
+  height: 100px;
+}
 #navigation {
-  margin: 20px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   padding: 0px 0px 0px 30px;
   background: #f0f0f0;
   font-size: 250%;
