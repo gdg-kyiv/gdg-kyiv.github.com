@@ -1,10 +1,110 @@
-@import "reset.css";
-@import url("font/open-sans/font.css");
+@import url("../font/open-sans/font.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
 body {
   font-family: sans-serif;
 }
+li {
+  margin-left: 16px;
+  list-style-position: inside;
+}
+ol > li {
+  list-style-type: decimal;
+}
+ul > li {
+  list-style-type: disc;
+}
 .gdg-logo {
-  background: url("header-background.jpg");
+  background: url("../img/header-background.jpg");
   font: normal 500% 'Open Sans', sans-serif;
   padding: 20px 0px 0px 20px;
   margin: 0px;
@@ -20,8 +120,14 @@ body {
 .gdg-logo > img {
   height: 100px;
 }
+.nav-gradient-line {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #d74137), color-stop(0.25, #069851), color-stop(0.5, #f7c53c), color-stop(1, #4485f3));
+  background: -webkit-linear-gradient(left, #d74137 0%, #069851 25%, #f7c53c 50%, #4485f3 100%);
+  background: -moz-linear-gradient(left, #d74137 0%, #069851 25%, #f7c53c 50%, #4485f3 100%);
+  background: linear-gradient(left, #d74137 0%, #069851 25%, #f7c53c 50%, #4485f3 100%);
+  height: 0px;
+}
 #navigation {
-  margin: 0px 0px 10px 0px;
   padding: 5px 20px 5px 30px;
   background: #f0f0f0;
   font-size: 250%;
@@ -75,7 +181,8 @@ body {
   opacity: 0;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
-#container > div.about {
+#container > div.about,
+#container > div.selected {
   -webkit-transition: opacity 250ms ease;
   -moz-transition: opacity 250ms ease;
   transition: opacity 250ms ease;
@@ -93,10 +200,6 @@ body {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   z-index: 10;
-}
-#container > div .block {
-  border: 1px solid #c8c8c8;
-  background: #f0f0f0;
 }
 #container > div.tiled > .column,
 #container > div.columns > .column {
@@ -117,6 +220,10 @@ body {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 }
+.block {
+  border: 1px solid #c8c8c8;
+  background-color: #f0f0f0;
+}
 .block.event {
   display: inline-block;
   overflow: hidden;
@@ -125,6 +232,40 @@ body {
   margin: 20px 20px 0px 0px;
   width: 360px;
   height: 360px;
+  cursor: pointer;
+  border-width: 20px 0px 20px 0px;
+}
+.block.event:hover {
+  border-color: #a0a0a0;
+  -webkit-transition: border-color 100ms;
+  -moz-transition: border-color 100ms;
+  transition: border-color 100ms;
+}
+.block.event.selected {
+  width: 720px;
+  height: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+  cursor: auto;
+}
+.block.event.selected .photos {
+  height: 160px;
+}
+.block.event .topics {
+  position: absolute;
+  width: 360px;
+  margin-top: -30px;
+  text-align: right;
+}
+.block.event .topics .topic {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  background: #f0f0f0;
+  border: 1px solid #c8c8c8;
+  margin-left: 10px;
 }
 .block.event .fadeout {
   position: absolute;
@@ -144,23 +285,35 @@ body {
   background: #f0f0f0;
 }
 .block.event .date {
-  font-size: 48px;
-  font-weight: lighter;
+  padding: 8px 0px 4px 0px;
+  font-size: 36px;
+  display: inline-block;
 }
 .block.event .title {
   font-size: 24px;
   margin-bottom: 12px;
   margin-top: 6px;
+  line-height: 120%;
+}
+.block.event .description {
+  line-height: 120%;
 }
 .block.event .photos {
+  height: 104px;
   margin-bottom: 12px;
+}
+.block.event .photos .pwi_container {
+  background: transparent;
+  padding: 0px;
+}
+.block.event .photos .pwi_container > div {
   white-space: nowrap;
   overflow: hidden;
 }
-.block.event .photos img {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
+.block.event .photos .pwi_container > div > .pwi_photo {
+  display: inline-block;
+  float: none;
+  margin: 0px 10px 0px 0px;
 }
 .block.member {
   display: block;

@@ -1,35 +1,28 @@
 var data = {
 	past: [
 		{ 
-			'date': Date.parse('10.03.2012'), 'title': 'Це CeBit, Мамо!', 
-			'description': "“BARCELOOONA! -3″ — традиционное, ежегодное DevCafe+МастерКласс по Android GameDev<br>Программа:<br>— “Android в Барселоне” — Сергей<br> Митяев, редактор gagadget, участник Mobile World Congress 2012 (Barcelona, Spain)<br>—  MasterClass Game-development for Android:<br>1) “Как написать успешную игру (опыт создания и поддержки игры Dead Rider)” — Рафаэль Гилязитдинов (Ufa GTUG)<br>2) “Опыт участия GameDev-проектов в международных конкурсах, а также разработка и продвижение игр в Android Market и альтернативних магазинах” — Михаил Дворников (Kyiv GTUG Center)<br>3) “GameDev, как бизнес — новые вызовы и новые возможности” — Обсуждение",
-			'photos': [ 
-				'https://lh5.googleusercontent.com/-fIJnXkQRapg/TvHPB2hUrkI/AAAAAAAAAQA/3Cs0nHHFkr4/s150-c/photo.jpg',
-				'https://lh5.googleusercontent.com/-fIJnXkQRapg/TvHPB2hUrkI/AAAAAAAAAQA/3Cs0nHHFkr4/s150-c/photo.jpg',
-				'https://lh5.googleusercontent.com/-fIJnXkQRapg/TvHPB2hUrkI/AAAAAAAAAQA/3Cs0nHHFkr4/s150-c/photo.jpg',
-				'https://lh5.googleusercontent.com/-fIJnXkQRapg/TvHPB2hUrkI/AAAAAAAAAQA/3Cs0nHHFkr4/s150-c/photo.jpg',
-				'https://lh5.googleusercontent.com/-fIJnXkQRapg/TvHPB2hUrkI/AAAAAAAAAQA/3Cs0nHHFkr4/s150-c/photo.jpg',
-				'https://lh5.googleusercontent.com/-fIJnXkQRapg/TvHPB2hUrkI/AAAAAAAAAQA/3Cs0nHHFkr4/s150-c/photo.jpg',
-			]
+			date: Date.parse('10.03.2012'), title: 'Це CeBit, Мамо!', count: 15, topics: ['android', 'games' ],
+			description: "“BARCELOOONA! -3″ — традиционное, ежегодное DevCafe+МастерКласс по Android GameDev<br>Программа:<br>— “Android в Барселоне” — Сергей<br> Митяев, редактор gagadget, участник Mobile World Congress 2012 (Barcelona, Spain)<br>—  MasterClass Game-development for Android:<br>1) “Как написать успешную игру (опыт создания и поддержки игры Dead Rider)” — Рафаэль Гилязитдинов (Ufa GTUG)<br>2) “Опыт участия GameDev-проектов в международных конкурсах, а также разработка и продвижение игр в Android Market и альтернативних магазинах” — Михаил Дворников (Kyiv GTUG Center)<br>3) “GameDev, как бизнес — новые вызовы и новые возможности” — Обсуждение",
+			photos: { username: 'kyivgtugcenter', album: 'DevCafepastGDD' },
 		},
-		{ 'date': Date.parse('03.03.2012'), 'title': 'BARCELOOONA!-3 + Android GameDev Master-Class' },
+		{ date: Date.parse('03.03.2012'), title: 'BARCELOOONA!-3 + Android GameDev Master-Class', count: 15, topics: ['android'], },
 		{ 
-			'date-from': Date.parse('17.02.2012'), 'date-to': Date.parse('19.02.2012'), 
-			'title': 'Global Android Dev Camp' 
+			date: { from: Date.parse('17.02.2012'), to: Date.parse('19.02.2012') }, 
+			title: 'Global Android Dev Camp', count: 15 , topics: ['android'],
 		},
-		{ 'date': Date.parse('12.02.2012'), 'title': 'Android Master-Class, Level 2' },
-		{ 'date': Date.parse('05.02.2012'), 'title': 'Android Master-Class, Level 1' },
-		{ 'date': Date.parse('18.10.2011'), 'title': 'Встреча с Андреем Ясинецким' },
-		{ 'date': Date.parse('14.10.2011'), 'title': 'Встреча на Эльбе' },
+		{ date: Date.parse('12.02.2012'), title: 'Android Master-Class, Level 2', count: 15, topics: ['android'], },
+		{ date: Date.parse('05.02.2012'), title: 'Android Master-Class, Level 1', count: 15, topics: ['android'], },
+		{ date: Date.parse('18.10.2011'), title: 'Встреча с Андреем Ясинецким', count: 15, topics: ['android', 'chrome'], },
+		{ date: Date.parse('14.10.2011'), title: 'Встреча на Эльбе', count: 15, topics: ['html5'], },
 	],
 	
 	future: [
 		{ 
-			'date': Date.parse('24.05.2012'), 'title': 'Це CeBit, Мамо!', 
-			'description': "“BARCELOOONA! -3″ — традиционное, ежегодное DevCafe+МастерКласс по Android GameDev<br>Программа:<br>— “Android в Барселоне” — Сергей<br> Митяев, редактор gagadget, участник Mobile World Congress 2012 (Barcelona, Spain)<br>—  MasterClass Game-development for Android:<br>1) “Как написать успешную игру (опыт создания и поддержки игры Dead Rider)” — Рафаэль Гилязитдинов (Ufa GTUG)<br>2) “Опыт участия GameDev-проектов в международных конкурсах, а также разработка и продвижение игр в Android Market и альтернативних магазинах” — Михаил Дворников (Kyiv GTUG Center)<br>3) “GameDev, как бизнес — новые вызовы и новые возможности” — Обсуждение",
+			date: Date.parse('24.05.2012'), title: 'Це CeBit, Мамо!', 
+			description: "“BARCELOOONA! -3″ — традиционное, ежегодное DevCafe+МастерКласс по Android GameDev<br>Программа:<br>— “Android в Барселоне” — Сергей<br> Митяев, редактор gagadget, участник Mobile World Congress 2012 (Barcelona, Spain)<br>—  MasterClass Game-development for Android:<br>1) “Как написать успешную игру (опыт создания и поддержки игры Dead Rider)” — Рафаэль Гилязитдинов (Ufa GTUG)<br>2) “Опыт участия GameDev-проектов в международных конкурсах, а также разработка и продвижение игр в Android Market и альтернативних магазинах” — Михаил Дворников (Kyiv GTUG Center)<br>3) “GameDev, как бизнес — новые вызовы и новые возможности” — Обсуждение",
 		},
-		{ 'date': 'Middle of June', 'title': 'BARCELOOONA!-3 + Android GameDev Master-Class' },
-		{ 'date': 'Winter 2013', 'title': 'Встреча на Эльбе' },
+		{ date: 'Middle of June', title: 'BARCELOOONA!-3 + Android GameDev Master-Class' },
+		{ date: 'Winter 2013', title: 'Встреча на Эльбе' },
 	],
 	
 	members: [
@@ -91,6 +84,6 @@ var data = {
 }
 
 function requestData(success, failure) {
-    setTimeout(function() { success(data) }, 1000)
+    setTimeout(function() { success(data) }, 0)
 }
 

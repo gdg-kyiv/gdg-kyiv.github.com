@@ -1,16 +1,26 @@
 @import 'nib'
-@import "reset.css"
-@import url("font/open-sans/font.css");
+@import url("../font/open-sans/font.css");
+global-reset()
 
-$default-bg = rgb(240,240,240)
-$default-border = rgb(200, 200, 200)
+$default-bg = #f0f0f0
+$default-border = #c8c8c8
 $delay = unit(250, ms)
 
 body
 	font-family sans-serif
 	
+li
+	margin-left 16px
+	list-style-position inside
+
+ol > li
+		list-style-type decimal
+		
+ul > li
+		list-style-type disc 
+	
 .gdg-logo
-	background: url(header-background.jpg)
+	background: url(../img/header-background.jpg)
 	font normal 500% 'Open Sans', sans-serif
 	padding 20px 0px 0px 20px
 	margin 0px
@@ -25,7 +35,11 @@ body
 	
 	> img
 		height 100px
-	
+
+.nav-gradient-line
+	background linear-gradient(left, #d74137, #069851, #f7c53c, #4485f3)
+	height 0px
+
 #navigation
 	$font-size-normal = 150%
 	$font-size-current = 250%
@@ -36,7 +50,6 @@ body
 	$appear-transition = opacity 1s ease, visibility 0s 1s
 	$appear-transition-delayed = opacity 1s ease 1s, visibility 0s 1s
 
-	margin 0px 0px 10px 0px
 	padding 5px 20px 5px 30px
 	background $default-bg
 	font-size $font-size-current
@@ -79,7 +92,7 @@ body
 		position absolute
 		opacity 0
 
-		&.about
+		&.about, &.selected
 			transition opacity $delay ease
 
 		&.past, &.future, &.members
@@ -91,10 +104,6 @@ body
 		&.current
 			opacity 1
 			z-index 10
-
-		.block
-			border 1px solid $default-border
-			background $default-bg
 
 		&.tiled, &.columns
 			> .column
@@ -112,6 +121,9 @@ body
 	$margin = 20px
 	$padding = 10px
 
+	border 1px solid $default-border
+	background-color $default-bg
+
 	&.event
 		$width = 360px
 		$height = 360px
@@ -125,6 +137,35 @@ body
 		margin $margin $margin 0px 0px
 		width $width
 		height $height
+		cursor pointer
+		border-width 20px 0px 20px 0px
+		
+		&:hover
+			border-color darken($default-border, 20%)
+			transition border-color 100ms
+			
+		&.selected
+			width 720px
+			height auto
+			transform none
+			cursor auto
+			
+			.photos
+				height 160px
+		
+		.topics
+			position absolute
+			width $width
+			margin-top -30px
+			text-align right
+			.topic
+				display inline-block
+				height 30px
+				width 30px
+				padding 5px
+				background $default-bg
+				border 1px solid $default-border
+				margin-left: 10px
 		
 		.fadeout
 			position absolute
@@ -141,23 +182,32 @@ body
 			background $default-bg
 
 		.date
-			font-size 48px
-			font-weight lighter
+			padding 8px 0px 4px 0px
+			font-size 36px
+			display inline-block
 
 		.title 
 			font-size 24px
 			margin-bottom 12px
 			margin-top 6px
+			line-height 120%
+
+		.description
+			line-height 120%
 
 		.photos 
+			height 104px
 			margin-bottom 12px
-			white-space nowrap
-			overflow hidden
-
-			img
-				width 100px
-				height 100px
-				margin-right 10px
+			.pwi_container
+				background transparent
+				padding 0px
+				> div
+					white-space nowrap
+					overflow hidden
+					> .pwi_photo
+						display inline-block
+						float none
+						margin 0px 10px 0px 0px
 
 	&.member 
 		display block

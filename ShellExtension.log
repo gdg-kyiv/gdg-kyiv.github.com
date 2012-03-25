@@ -1,0 +1,2 @@
+0.0.0.0	0	Tuso Unnamed Thread	00314510	Info1	Sun Mar 25 05:15:52 2012	TransferClient.cpp	041	TransferClient::TransferClient()	Creating TransferClient using WININET
+0.0.0.0	0	Tuso Unnamed Thread	00314510	Info1	Sun Mar 25 05:15:52 2012	Log.cpp	301	Log::ApplyLogFilter()	Adding filter 'alldebug' to log filter.
