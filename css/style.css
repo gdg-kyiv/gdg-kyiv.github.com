@@ -248,6 +248,10 @@ ul > li {
   -moz-transform: none;
   transform: none;
   cursor: auto;
+  border-color: #a0a0a0;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
 }
 .block.event.selected .photos {
   height: 160px;

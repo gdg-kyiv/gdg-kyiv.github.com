@@ -5,7 +5,6 @@ repeat = (count, arr) ->
 		b.push(arr[i%ln])
 	return b
 
-
 window.data =
 	past: [
 		date: Date.parse('10.03.2012')

@@ -54,7 +54,7 @@ function createEventDiv(event) {
             mode: 'album',
             maxResults: 7,
             thumbCrop: true,
-            onclickThumb: function() { },
+            onclickThumb: function(event) { return true },
             showPager: 'none',
             showSlideshow: false,
             showSlideshowLink: false,
