@@ -1,0 +1,26 @@
+/* WEBSITE */
+
+This is a work-in-progress on the new GDG Kyiv-Center website.
+The old website is at http://gtug.org.ua.
+
+/* TEAM */
+
+The site was created by me (Tymur Porkuian). 
+My personal blog is at http://gplus.to/fixpoint.
+My programming blog is at http://gplus.to/leastfixedpoint.
+
+/* THANKS */
+
+To everyone who provided suggestions.
+Special thanks to Google for the GDG logo.
+
+The background of the header was stolen from http://archunion.com.ua/panorama-kiev_013.shtml.
+They don't specify usage terms on their website and we're non-commercial, so I hope that it's OK.
+
+/* TECHS */
+
+HTML5, CSS3, Javascript
+
+CoffeeScript (to let data look nicer: https://github.com/gdg-kyiv/gdg-kyiv.github.com/blob/master/js/data.coffee)
+Stylys+Nib (to write CSS easier: https://github.com/gdg-kyiv/gdg-kyiv.github.com/blob/master/css/style.styl)
+NodeJS (to run CoffeeScript, Stylus and Nib)
