@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="css/pwi.css" type="text/css" media="screen" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-    <script src="js/jquery.pwi-min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script src="js/jquery.pwi.js" type="text/javascript"></script>
     <script src="js/date-en-GB.js"></script>
     <script src="js/format.js"></script>
     <script src="js/util.js"></script>
@@ -17,27 +18,19 @@
         $.fn.pwi.defaults.thumbCss = {}
     
         $(function() { 
-            /* requestData(function(data) { */
-                var data = window.data
-               
-                generateBlocks(data['past'], $('#container > .past'), createEventDiv, true)
-                $('#navigation > .past .counter').text(data['past'].length)
-                
-                generateBlocks(data['future'], $('#container > .future'), createEventDiv, true)
-                $('#navigation > .future .counter').text(data['future'].length)
-                
-                generateBlocks(data['members'], $('#container > .members'), createMemberDiv, false)
-                $('#navigation > .members .counter').text(data['members'].length)
-                layoutMembers()
+            var data = window.data
+           
+            generateBlocks(data['past'], $('#container > .past'), createEventDiv, true)
+            $('#navigation > .past .counter').text(data['past'].length)
             
-                $(window).resize(function() { layoutMembers() })
-                
-                $('#navigation > .loading').addClass('inactive')
-                $('#navigation > .nav-item').removeClass('inactive')
-                $('#container').removeClass('inactive')
-            /* }, function(jqXHR, textStatus, errorThrown) {
-                alert('FAIL: ' + textStatus + " " + errorThrown)
-            }) */
+            generateBlocks(data['future'], $('#container > .future'), createEventDiv, true)
+            $('#navigation > .future .counter').text(data['future'].length)
+            
+            generateBlocks(data['members'], $('#container > .members'), createMemberDiv, false)
+            $('#navigation > .members .counter').text(data['members'].length)
+            layoutMembers()
+        
+            $(window).resize(function() { layoutMembers() })
 
             $(["about", "past", "members", "future"]).each(function(i, name) {
                 $('#navigation > .' + name).click(function() { select(name) })
@@ -51,11 +44,10 @@
     <h1 class="gdg-logo"><img src="img/gdg.svg"><span><b>GDG</b> Kyiv-Center</span></h1>
     <div class="nav-gradient-line"></div>
     <div id="navigation">
-        <span class="loading">Loading...</span>
-    	<span class="inactive nav-item about"><span>About</span></span>
-    	<span class="inactive nav-item past"><span><span class="counter">?</span>&nbsp;past&nbsp;events</span></span>
-    	<span class="inactive nav-item future"><span><span class="counter">?</span>&nbsp;future&nbsp;events</span></span>
-    	<span class="inactive nav-item members"><span><span class="counter">658</span>&nbsp;members</span></span>
+    	<span class="nav-item about"><span>About</span></span>
+    	<span class="nav-item past"><span><span class="counter">?</span>&nbsp;past&nbsp;events</span></span>
+    	<span class="nav-item future"><span><span class="counter">?</span>&nbsp;future&nbsp;events</span></span>
+    	<span class="nav-item members"><span><span class="counter">658</span>&nbsp;members</span></span>
     </div>
     <div class="nav-gradient-line"></div>
     <div id="container" class="inactive">

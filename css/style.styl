@@ -12,7 +12,7 @@ body
 li
 	margin-left 16px
 	list-style-position inside
-
+ 
 ol > li
 	list-style-type decimal
 		
@@ -55,25 +55,12 @@ ul > li
 	font-size $font-size-current
 	color $text-color-normal
 
-	.loading
-		position: absolute
-		vertical-align baseline
-		
-		&.inactive
-			opacity 0
-			visibility hidden
-			transition $appear-transition
-	
 	.nav-item
 		margin-right 20px
 		vertical-align baseline
 		font-size (100 * $font-size-normal / $font-size-current)
 		transition $font-transition, $appear-transition-delayed
 		cursor pointer
-		
-		&.inactive
-			opacity 0
-			visibility hidden
 
 		&.current, &:hover
 			font-size 100%
@@ -84,9 +71,6 @@ ul > li
 #container
 	margin 0px 0px 0px 20px
 	transition opacity 1s ease 1s
-	
-	&.inactive
-		opacity 0
 	
 	> div
 		position absolute

@@ -133,18 +133,6 @@ ul > li {
   font-size: 250%;
   color: #aaa;
 }
-#navigation .loading {
-  position: absolute;
-  vertical-align: baseline;
-}
-#navigation .loading.inactive {
-  opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  visibility: hidden;
-  -webkit-transition: opacity 1s ease, visibility 0s 1s;
-  -moz-transition: opacity 1s ease, visibility 0s 1s;
-  transition: opacity 1s ease, visibility 0s 1s;
-}
 #navigation .nav-item {
   margin-right: 20px;
   vertical-align: baseline;
@@ -153,11 +141,6 @@ ul > li {
   -moz-transition: font-size 250ms ease, opacity 1s ease 1s, visibility 0s 1s;
   transition: font-size 250ms ease, opacity 1s ease 1s, visibility 0s 1s;
   cursor: pointer;
-}
-#navigation .nav-item.inactive {
-  opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  visibility: hidden;
 }
 #navigation .nav-item.current,
 #navigation .nav-item:hover {
@@ -171,10 +154,6 @@ ul > li {
   -webkit-transition: opacity 1s ease 1s;
   -moz-transition: opacity 1s ease 1s;
   transition: opacity 1s ease 1s;
-}
-#container.inactive {
-  opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 #container > div {
   position: absolute;
